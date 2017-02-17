@@ -1,0 +1,11 @@
+Color To Tile
+-------------
+Floor(255, 255, 255, 255) or (FFFFFFFF)
+Wall(0, 0, 0, 255) or (000000FF)
+Player(255, 0, 0, 255) or (FF0000FF)
+
+Level Logic Info
+----------------
+//Use this to talk about how doors open, what keys they need, how enemies act, etc.
+go into detail. Use this as a game/level design document.
+
