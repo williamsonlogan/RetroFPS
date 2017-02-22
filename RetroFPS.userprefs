@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Levels\LevelLoad.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\FPSCharacterController.cs">
     <Files>
-      <File FileName="Assets\Levels\LevelLoad.cs" Line="31" Column="22" />
+      <File FileName="Assets\Levels\LevelLoad.cs" Line="42" Column="6" />
+      <File FileName="Assets\Scripts\FPSCharacterController.cs" Line="9" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
