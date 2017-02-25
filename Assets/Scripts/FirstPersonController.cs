@@ -7,6 +7,8 @@ public class FirstPersonController : MonoBehaviour {
 	public float movementSpeed = 5.0f;
 	public float mouseSensitivity = 5.0f;
 	public float jumpSpeed = 20.0f;
+	public float sprintMulti = 1.5f;
+	public Animator gunAnimation = new Animator();
 	
 	float verticalRotation = 0;
 	public float upDownRange = 60.0f;
@@ -17,12 +19,21 @@ public class FirstPersonController : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		Screen.lockCursor = true;
+		//Lock Cursor
+		//Screen.lockCursor = true; //Depricated
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+
+		//Create character controller
 		characterController = GetComponent<CharacterController>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			Application.Quit ();
+		}
+
 		// Rotation
 		
 		float rotLeftRight = Input.GetAxis("Mouse X") * mouseSensitivity;
@@ -41,15 +52,26 @@ public class FirstPersonController : MonoBehaviour {
 		
 		verticalVelocity += Physics.gravity.y * Time.deltaTime;
 		
-		if( characterController.isGrounded && Input.GetButton("Jump") ) {
-			verticalVelocity = jumpSpeed;
-		}
+		//if( characterController.isGrounded && Input.GetButtonDown("Jump") ) {
+		//	verticalVelocity = jumpSpeed;
+		//}
 		
 		Vector3 speed = new Vector3( sideSpeed, verticalVelocity, forwardSpeed );
-		
+
 		speed = transform.rotation * speed;
-		
-		
+
+
+		//If shift, then sprint
+		if(Input.GetButton("Fire3")){
+			speed *= sprintMulti;
+		}
+			
 		characterController.Move( speed * Time.deltaTime );
+
+		if (Input.GetAxis("Vertical") == 0 & Input.GetAxis("Horizontal") == 0) {
+			gunAnimation.SetBool ("isMoving", false);
+		} else {
+			gunAnimation.SetBool ("isMoving", true);
+		}
 	}
 }
