@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent (typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour {
+	int health = 100, armor = 0;
 	
 	public float movementSpeed = 5.0f;
 	public float mouseSensitivity = 5.0f;
@@ -11,6 +13,11 @@ public class FirstPersonController : MonoBehaviour {
 	public Animator gunAnimation = new Animator();
 
 	public LineRenderer lineRenderer = new LineRenderer();
+
+	public AudioSource gunBlast;
+
+	public Text healthText;
+	public Text armorText;
 
 	//Weapon vars
 	int currentWeapon = 0;
@@ -30,7 +37,6 @@ public class FirstPersonController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//Lock Cursor
-		//Screen.lockCursor = true; //Depricated
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
 
@@ -50,10 +56,18 @@ public class FirstPersonController : MonoBehaviour {
 			lineRenderer.enabled = true;
 		} else {
 			lineRenderer.enabled = false;
+			gunAnimation.SetBool ("Shoot", false);
 		}
+
+		healthText.text = health.ToString ();
+		armorText.text = armor.ToString ();
 	}
 
 	void shootGun(){
+		gunBlast.Play ();
+
+		gunAnimation.SetBool ("Shoot", true);
+
 		RaycastHit hit;
 		Vector3 crosshair = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0);
 		Ray ray = Camera.main.ScreenPointToRay(crosshair);
@@ -70,7 +84,6 @@ public class FirstPersonController : MonoBehaviour {
 		
 			lineRenderer.SetPosition (1, hit.point);
 		}
-
 	}
 
 	void UpdateMovement(){
@@ -92,6 +105,7 @@ public class FirstPersonController : MonoBehaviour {
 
 		verticalVelocity += Physics.gravity.y * Time.deltaTime;
 
+		//Code for jumping, didn't feel like it was needed for this game
 		//if( characterController.isGrounded && Input.GetButtonDown("Jump") ) {
 		//	verticalVelocity = jumpSpeed;
 		//}
@@ -101,13 +115,14 @@ public class FirstPersonController : MonoBehaviour {
 		speed = transform.rotation * speed;
 
 
-		//If shift, then sprint
+		//If shift, then sprint(makes this game feel GOOD)
 		if(Input.GetButton("Fire3")){
 			speed *= sprintMulti;
 		}
 
 		characterController.Move( speed * Time.deltaTime );
 
+		//If moving, make that gun bob
 		if (Input.GetAxis("Vertical") == 0 & Input.GetAxis("Horizontal") == 0) {
 			gunAnimation.SetBool ("isMoving", false);
 		} else {

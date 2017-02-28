@@ -2,10 +2,10 @@ Mono path[0] = 'C:/Users/Logan/OneDrive/RetroFPS/Builds/ShootLightDemo/SLDemo_Da
 Mono path[1] = 'C:/Users/Logan/OneDrive/RetroFPS/Builds/ShootLightDemo/SLDemo_Data/Mono'
 Mono config path = 'C:/Users/Logan/OneDrive/RetroFPS/Builds/ShootLightDemo/SLDemo_Data/Mono/etc'
 PlayerConnection initialized from C:/Users/Logan/OneDrive/RetroFPS/Builds/ShootLightDemo/SLDemo_Data (debug = 0)
-PlayerConnection initialized network socket : 0.0.0.0 55292
-Multi-casting "[IP] 10.100.203.170 [Port] 55292 [Flags] 2 [Guid] 1801933166 [EditorId] 3953932241 [Version] 1048832 [Id] WindowsPlayer(Logan-PC) [Debug] 0" to [225.0.0.222:54997]...
-Started listening to [0.0.0.0:55292]
-PlayerConnection already initialized - listening to [0.0.0.0:55292]
+PlayerConnection initialized network socket : 0.0.0.0 55397
+Multi-casting "[IP] 10.100.203.170 [Port] 55397 [Flags] 2 [Guid] 2961684594 [EditorId] 3953932241 [Version] 1048832 [Id] WindowsPlayer(Logan-PC) [Debug] 0" to [225.0.0.222:54997]...
+Started listening to [0.0.0.0:55397]
+PlayerConnection already initialized - listening to [0.0.0.0:55397]
 Initialize engine version: 5.5.1f1 (88d00a7498cd)
 GfxDevice: creating device client; threaded=1
 Direct3D:
@@ -27,14 +27,14 @@ Platform assembly: C:\Users\Logan\OneDrive\RetroFPS\Builds\ShootLightDemo\SLDemo
 Loading C:\Users\Logan\OneDrive\RetroFPS\Builds\ShootLightDemo\SLDemo_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
 Platform assembly: C:\Users\Logan\OneDrive\RetroFPS\Builds\ShootLightDemo\SLDemo_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\Logan\OneDrive\RetroFPS\Builds\ShootLightDemo\SLDemo_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.023 seconds
+- Completed reload, in  0.025 seconds
 Platform assembly: C:\Users\Logan\OneDrive\RetroFPS\Builds\ShootLightDemo\SLDemo_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Logan\OneDrive\RetroFPS\Builds\ShootLightDemo\SLDemo_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 3840x1226 at -1920,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.941567 ms
+UnloadTime: 10.646523 ms
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 2e18 -> priority: 1 
-  Thread -> id: 35c -> priority: 1 
+  Thread -> id: 38d4 -> priority: 1 
+  Thread -> id: 2a4c -> priority: 1 
