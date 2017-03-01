@@ -1,3 +1,8 @@
+/* BUGS TO FIX
+ * If you are aiming beyond your current range, the laser keeps shooting at the last location
+ * Currently there is no cooldown on the pistol, this needs to change.
+ */
+
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
@@ -66,8 +71,6 @@ public class FirstPersonController : MonoBehaviour {
 	void shootGun(){
 		gunBlast.Play ();
 
-		gunAnimation.SetBool ("Shoot", true);
-
 		RaycastHit hit;
 		Vector3 crosshair = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0);
 		Ray ray = Camera.main.ScreenPointToRay(crosshair);
@@ -83,6 +86,7 @@ public class FirstPersonController : MonoBehaviour {
 			}
 		
 			lineRenderer.SetPosition (1, hit.point);
+			gunAnimation.SetBool ("Shoot", true);
 		}
 	}
 
