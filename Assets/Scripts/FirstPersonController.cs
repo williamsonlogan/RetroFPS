@@ -27,6 +27,10 @@ public class FirstPersonController : MonoBehaviour {
 	int currentWeapon = 0;
 	bool weaponAuto = false;
 
+	//Weapon fire-rates
+	public float pistolFireRate = 0.5f;
+	float nextPistolFireTime = 0.0f;
+
 	//Weapon damage
 	public float pistolDmg = 1.0f;
 	public float rifleDmg = 5.0f;
@@ -55,7 +59,8 @@ public class FirstPersonController : MonoBehaviour {
 		}
 
 		UpdateMovement ();
-		if (Input.GetButtonDown ("Fire1")) {
+		if (Input.GetButtonDown ("Fire1") && Time.time > nextPistolFireTime) {
+			nextPistolFireTime = Time.time + pistolFireRate;
 			shootGun ();
 			lineRenderer.enabled = true;
 		} else {
