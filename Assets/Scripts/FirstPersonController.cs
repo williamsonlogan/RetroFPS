@@ -19,17 +19,8 @@ public class FirstPersonController : MonoBehaviour {
 	public Text healthText;
 	public Text armorText;
 
-	//Weapon vars
-	int currentWeapon = 0;
-	bool weaponAuto = false;
-
-	//Weapon fire-rates
-	public float pistolFireRate = 0.5f;
-	float nextPistolFireTime = 0.0f;
-
-	//Weapon damage
-	public float pistolDmg = 1.0f;
-	public float rifleDmg = 5.0f;
+	//Weapon Manager
+	WeaponManager WeaponMan = new WeaponManager();
 	
 	float verticalRotation = 0;
 	public float upDownRange = 60.0f;
@@ -55,14 +46,28 @@ public class FirstPersonController : MonoBehaviour {
 		}
 
 		UpdateMovement ();
-		if (Input.GetButtonDown ("Fire1") && Time.time > nextPistolFireTime) {
-			nextPistolFireTime = Time.time + pistolFireRate;
-			shootGun ();
+		if (Input.GetButtonDown("Fire1") && WeaponMan.CanFireCurrentWeapon())
+		{
+			WeaponMan.FireCurrentWeapon(); // Does not do animations yet
+			shootGun();
 			lineRenderer.enabled = true;
-		} else {
-			lineRenderer.enabled = false;
-			gunAnimation.SetBool ("Shoot", false);
 		}
+		else
+		{
+			lineRenderer.enabled = false;
+			gunAnimation.SetBool("Shoot", false);
+		}
+
+		/* Once we have more weapons and animations this can be the scroll wheel weapon switch logic
+		if (Input.GetAxis("Mouse Wheel") > 0.0f)
+		{
+			int i = WeaponMan.Weapons.IndexOf(WeaponMan.CurrentWeapon);
+			if (++i >= WeaponMan.Weapons.Count)
+				i = 0;
+
+			WeaponMan.CurrentWeapon = WeaponMan.Weapons[i];
+		}
+		*/
 
 		healthText.text = health.ToString ();
 		armorText.text = armor.ToString ();
@@ -80,7 +85,7 @@ public class FirstPersonController : MonoBehaviour {
 		if(Physics.Raycast(ray, out hit, 20.0f)){
 			if (hit.collider.tag == ("Enemy"))
 			{
-				hit.collider.SendMessage("TakeDamage", pistolDmg, SendMessageOptions.DontRequireReceiver);
+				hit.collider.SendMessage("TakeDamage", WeaponMan.CurrentWeapon.weaponDamage, SendMessageOptions.DontRequireReceiver);
 				Debug.Log("Enemy Hit");
 			}
 		}
@@ -127,7 +132,7 @@ public class FirstPersonController : MonoBehaviour {
 		characterController.Move( speed * Time.deltaTime );
 
 		//If moving, make that gun bob
-		if (Input.GetAxis("Vertical") == 0 & Input.GetAxis("Horizontal") == 0) {
+		if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0) {
 			gunAnimation.SetBool ("isMoving", false);
 		} else {
 			gunAnimation.SetBool ("isMoving", true);
