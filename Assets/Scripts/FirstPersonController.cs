@@ -1,7 +1,3 @@
-/* BUGS TO FIX
- * Currently there is no cooldown on the pistol, this needs to change.
- */
-
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
