@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Levels/RogueLike/Easy/01/01.unity
-  isLoaded: 1
-  isActive: 1
