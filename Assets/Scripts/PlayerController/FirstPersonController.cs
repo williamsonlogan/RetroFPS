@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 [RequireComponent (typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour {
@@ -21,7 +22,7 @@ public class FirstPersonController : MonoBehaviour {
 	public Text weaponText;
 
 	//Weapon Manager
-	WeaponManager WeaponMan = new WeaponManager();
+	WeaponManager WeaponMan = new WeaponManager(AvailableWeapons.AllPlayer);
 	
 	float verticalRotation = 0;
 	public float upDownRange = 60.0f;
@@ -83,7 +84,25 @@ public class FirstPersonController : MonoBehaviour {
 		if(Physics.Raycast(ray, out hit, 800.0f)){
 			lineRenderer.SetPosition(1, hit.point);
 		}
-			gunAnimation.SetBool ("Shoot", true);
+
+		gunAnimation.SetBool ("Shoot", true);
+	}
+
+	void TakeDamage(float dmg)
+	{
+		armor -= Convert.ToInt32 (dmg);
+
+		if (armor < 0)
+		{
+			int difference = -armor;
+			health -= difference;
+			armor = 0;
+
+			if (health <= 0) {
+				Debug.Log ("Player is dead!");
+				health = 0;
+			}
+		}
 	}
 
 	void UpdateWeapon()

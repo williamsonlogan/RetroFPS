@@ -1,12 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\FirstPersonController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Spawner.cs">
     <Files>
-      <File FileName="Assets\Levels\LevelLoad.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\FirstPersonController.cs" Line="95" Column="39" />
-      <File FileName="Assets\Scripts\Billboard.cs" Line="10" Column="1" />
-      <File FileName="Assets\Scripts\Enemy.cs" Line="30" Column="6" />
-      <File FileName="Assets\Scripts\Spawner.cs" Line="26" Column="1" />
+      <File FileName="Assets\Scripts\Enemy.cs" Line="117" Column="1" />
+      <File FileName="Assets\Scripts\WeaponManager\Firearm.cs" Line="34" Column="1" />
+      <File FileName="Assets\Scripts\WeaponManager\WeaponManager.cs" Line="63" Column="1" />
+      <File FileName="Assets\Scripts\Spawner.cs" Line="32" Column="3" />
+      <File FileName="Assets\Scripts\PlayerController\FirstPersonController.cs" Line="99" Column="14" />
+      <File FileName="Assets\Scripts\WeaponManager\Firearms.cs" Line="10" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
