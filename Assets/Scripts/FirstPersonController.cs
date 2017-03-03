@@ -18,6 +18,7 @@ public class FirstPersonController : MonoBehaviour {
 
 	public Text healthText;
 	public Text armorText;
+	public Text weaponText;
 
 	//Weapon Manager
 	WeaponManager WeaponMan = new WeaponManager();
@@ -57,18 +58,9 @@ public class FirstPersonController : MonoBehaviour {
 			lineRenderer.enabled = false;
 			gunAnimation.SetBool("Shoot", false);
 		}
+		UpdateWeapon ();
 
-		/* Once we have more weapons and animations this can be the scroll wheel weapon switch logic
-		if (Input.GetAxis("Mouse Wheel") > 0.0f)
-		{
-			int i = WeaponMan.Weapons.IndexOf(WeaponMan.CurrentWeapon);
-			if (++i >= WeaponMan.Weapons.Count)
-				i = 0;
-
-			WeaponMan.CurrentWeapon = WeaponMan.Weapons[i];
-		}
-		*/
-
+		weaponText.text = WeaponMan.CurrentWeapon.weaponName;
 		healthText.text = health.ToString ();
 		armorText.text = armor.ToString ();
 	}
@@ -81,7 +73,6 @@ public class FirstPersonController : MonoBehaviour {
 		Ray ray = Camera.main.ScreenPointToRay(crosshair);
 
 		lineRenderer.SetPosition (0, new Vector3(transform.position.x, transform.position.y + 0.50f, transform.position.z));
-
 		if(Physics.Raycast(ray, out hit, 20.0f)){
 			if (hit.collider.tag == ("Enemy"))
 			{
@@ -93,6 +84,24 @@ public class FirstPersonController : MonoBehaviour {
 			lineRenderer.SetPosition(1, hit.point);
 		}
 			gunAnimation.SetBool ("Shoot", true);
+	}
+
+	void UpdateWeapon()
+	{
+		int i = WeaponMan.Weapons.IndexOf (WeaponMan.CurrentWeapon);
+
+		if (Input.GetAxis("Mouse ScrollWheel") > 0.0f)
+		{
+			if (++i >= WeaponMan.Weapons.Count)
+				i = 0;
+		}
+		else if (Input.GetAxis("Mouse ScrollWheel") < 0.0f)
+		{
+			if (--i < 0)
+				i = WeaponMan.Weapons.Count - 1;
+		}
+
+		WeaponMan.CurrentWeapon = WeaponMan.Weapons[i];
 	}
 
 	void UpdateMovement(){

@@ -73,18 +73,18 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Levels\LevelLoad.cs" />
-    <Compile Include="Assets\Scripts\FPSCharacterController.cs" />
+    <Compile Include="Assets\Scripts\Billboard.cs" />
+    <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\FirstPersonController.cs" />
+    <Compile Include="Assets\Scripts\Spawner.cs" />
+    <Compile Include="Assets\Scripts\WeaponManager\Firearm.cs" />
+    <Compile Include="Assets\Scripts\WeaponManager\WeaponManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Levels\S1L1\TileMap\s1l1.txt" />
     <None Include="Assets\Levels\TestLevel\Tilemap\Tilemap Sample\Example Key.txt" />
     <None Include="Assets\Levels\TestLevel\Tilemap\Tilemap Sample\README.txt" />
   </ItemGroup>

@@ -1,10 +1,17 @@
 fileFormatVersion: 2
 guid: 1df544f336ef947458c1b728868aa55f
-timeCreated: 1487493806
+timeCreated: 1488436223
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - gunAnimation: {instanceID: 0}
+  - lineRenderer: {instanceID: 0}
+  - pointLightPrefab: {fileID: 1612891258369048, guid: eeae566c382066c47a5fc155b0f37496,
+      type: 2}
+  - gunBlast: {instanceID: 0}
+  - healthText: {instanceID: 0}
+  - armorText: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
