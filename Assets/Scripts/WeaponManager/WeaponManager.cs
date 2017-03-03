@@ -6,6 +6,11 @@ public enum WeaponType
 	Laser, Projectile
 };
 
+public enum AvailableWeapons
+{
+	AllPlayer, AllEnemy, None, Custom
+};
+
 public class WeaponManager
 {
 	public float battery = 100.0f;
@@ -15,13 +20,35 @@ public class WeaponManager
 
 	public Firearm CurrentWeapon;
 
-	public WeaponManager()
+	public WeaponManager(AvailableWeapons _availableWeapons = AvailableWeapons.AllPlayer)
 	{
 		Weapons = new List<Firearm>();
-		Weapons.Add(new Firearm("Laser Pistol", 1.0f, 0.5f, false, 0.1f, WeaponType.Laser));
-		Weapons.Add(new Firearm("Laser Rifle", 5.0f, 2.3f, false, 0.2f, WeaponType.Laser));
 
-		CurrentWeapon = Weapons[0];
+		switch (_availableWeapons) {
+		case AvailableWeapons.AllPlayer:
+			Weapons.Add (Firearms.LaserPistol);
+			Weapons.Add (Firearms.LaserRifle);
+			CurrentWeapon = Weapons [0];
+			break;
+		case AvailableWeapons.AllEnemy:
+			Weapons.Add (Firearms.EnemyLaserPistol);
+			CurrentWeapon = Weapons [0];
+			break;
+		case AvailableWeapons.Custom:
+		case AvailableWeapons.None:
+		default:
+			CurrentWeapon = null;
+			break;
+		}
+	}
+
+	public void AddWeapon(Firearm _newFirearm)
+	{
+		Weapons.Add (_newFirearm);
+
+		if (CurrentWeapon == null) {
+			CurrentWeapon = Weapons [0];
+		}
 	}
 
 	public void FireCurrentWeapon()
