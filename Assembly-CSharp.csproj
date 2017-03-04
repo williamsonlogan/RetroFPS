@@ -49,8 +49,7 @@
      <Compile Include="Assets\Levels\LevelLoad.cs" />
      <Compile Include="Assets\Scripts\Billboard.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
-     <Compile Include="Assets\Scripts\PlayerController\FirstPersonController.cs" />
-     <Compile Include="Assets\Scripts\PlayerController\HitboxManager.cs" />
+     <Compile Include="Assets\Scripts\FirstPersonController.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\Scripts\WeaponManager\Firearm.cs" />
      <Compile Include="Assets\Scripts\WeaponManager\Firearms.cs" />

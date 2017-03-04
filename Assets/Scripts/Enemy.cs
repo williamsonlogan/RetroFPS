@@ -62,9 +62,11 @@ public class Enemy : MonoBehaviour {
 			if (EnemyWeaponMan.CanFireCurrentWeapon ()) {
 				EnemyWeaponMan.FireCurrentWeapon ();
 				ShootAtPlayer ();
+				lineRenderer.enabled = true;
 			}
 		} else {
 			transform.Rotate (0, 1, 0);
+			lineRenderer.enabled = false;
 		}
 	}
 
