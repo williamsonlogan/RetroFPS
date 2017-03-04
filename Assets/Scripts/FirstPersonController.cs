@@ -74,7 +74,7 @@ public class FirstPersonController : MonoBehaviour {
 		Ray ray = Camera.main.ScreenPointToRay(crosshair);
 
 		lineRenderer.SetPosition (0, new Vector3(transform.position.x, transform.position.y + 0.50f, transform.position.z));
-		if(Physics.Raycast(ray, out hit, 20.0f)){
+		if(Physics.Raycast(ray, out hit, 20.0f)) {
 			if (hit.collider.tag == ("Enemy"))
 			{
 				hit.collider.SendMessage("TakeDamage", WeaponMan.CurrentWeapon.weaponDamage, SendMessageOptions.DontRequireReceiver);
