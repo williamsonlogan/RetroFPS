@@ -5,29 +5,15 @@ using System;
 
 [RequireComponent (typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour {
-	int health = 100, armor = 0;
-	
+
 	public float movementSpeed = 5.0f;
 	public float mouseSensitivity = 5.0f;
-	public float jumpSpeed = 20.0f;
-	public float sprintMulti = 1.5f;
-	public Animator gunAnimation = new Animator();
-
-	public LineRenderer lineRenderer = new LineRenderer();
-
-	public AudioSource gunBlast;
-
-	public Text healthText;
-	public Text armorText;
-	public Text weaponText;
-
-	//Weapon Manager
-	WeaponManager WeaponMan = new WeaponManager(AvailableWeapons.AllPlayer);
 	
 	float verticalRotation = 0;
 	public float upDownRange = 60.0f;
-	
 	float verticalVelocity = 0;
+
+	public Player player;
 	
 	CharacterController characterController;
 	
@@ -48,79 +34,36 @@ public class FirstPersonController : MonoBehaviour {
 		}
 
 		UpdateMovement ();
-		if (Input.GetButtonDown("Fire1") && WeaponMan.CanFireCurrentWeapon())
+		if (Input.GetButtonDown("Fire1") && player.weaponMan.CanFireCurrentWeapon())
 		{
-			WeaponMan.FireCurrentWeapon(); // Does not do animations yet
-			shootGun();
-			lineRenderer.enabled = true;
+			player.weaponMan.FireCurrentWeapon();
+			player.ShootGun();
+			player.shotRenderer.enabled = true;
 		}
 		else
 		{
-			lineRenderer.enabled = false;
-			gunAnimation.SetBool("Shoot", false);
+			player.shotRenderer.enabled = false;
+			player.gunAnimation.SetBool("Shoot", false);
 		}
 		UpdateWeapon ();
-
-		weaponText.text = WeaponMan.CurrentWeapon.weaponName;
-		healthText.text = health.ToString ();
-		armorText.text = armor.ToString ();
-	}
-
-	void shootGun(){
-		gunBlast.Play ();
-
-		RaycastHit hit;
-		Vector3 crosshair = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0);
-		Ray ray = Camera.main.ScreenPointToRay(crosshair);
-
-		lineRenderer.SetPosition (0, new Vector3(transform.position.x, transform.position.y + 0.50f, transform.position.z));
-		if(Physics.Raycast(ray, out hit, 20.0f)) {
-			if (hit.collider.tag == ("Enemy"))
-			{
-				hit.collider.SendMessage("TakeDamage", WeaponMan.CurrentWeapon.weaponDamage, SendMessageOptions.DontRequireReceiver);
-				Debug.Log("Enemy Hit");
-			}
-		}
-		if(Physics.Raycast(ray, out hit, 800.0f)){
-			lineRenderer.SetPosition(1, hit.point);
-		}
-
-		gunAnimation.SetBool ("Shoot", true);
-	}
-
-	void TakeDamage(float dmg)
-	{
-		armor -= Convert.ToInt32 (dmg);
-
-		if (armor < 0)
-		{
-			int difference = -armor;
-			health -= difference;
-			armor = 0;
-
-			if (health <= 0) {
-				Debug.Log ("Player is dead!");
-				health = 0;
-			}
-		}
 	}
 
 	void UpdateWeapon()
 	{
-		int i = WeaponMan.Weapons.IndexOf (WeaponMan.CurrentWeapon);
+		int i = player.weaponMan.Weapons.IndexOf (player.weaponMan.CurrentWeapon);
 
 		if (Input.GetAxis("Mouse ScrollWheel") > 0.0f)
 		{
-			if (++i >= WeaponMan.Weapons.Count)
+			if (++i >= player.weaponMan.Weapons.Count)
 				i = 0;
 		}
 		else if (Input.GetAxis("Mouse ScrollWheel") < 0.0f)
 		{
 			if (--i < 0)
-				i = WeaponMan.Weapons.Count - 1;
+				i = player.weaponMan.Weapons.Count - 1;
 		}
 
-		WeaponMan.CurrentWeapon = WeaponMan.Weapons[i];
+		player.weaponMan.CurrentWeapon = player.weaponMan.Weapons[i];
 	}
 
 	void UpdateMovement(){
@@ -154,16 +97,16 @@ public class FirstPersonController : MonoBehaviour {
 
 		//If shift, then sprint(makes this game feel GOOD)
 		if(Input.GetButton("Fire3")){
-			speed *= sprintMulti;
+			speed *= player.sprintMulti;
 		}
 
 		characterController.Move( speed * Time.deltaTime );
 
 		//If moving, make that gun bob
 		if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0) {
-			gunAnimation.SetBool ("isMoving", false);
+			player.gunAnimation.SetBool ("isMoving", false);
 		} else {
-			gunAnimation.SetBool ("isMoving", true);
+			player.gunAnimation.SetBool ("isMoving", true);
 		}
 	}
 }

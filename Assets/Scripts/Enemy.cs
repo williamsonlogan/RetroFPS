@@ -106,7 +106,7 @@ public class Enemy : MonoBehaviour {
 			hit.collider.tag == "Player")
 		{
 			isInLineOfSight = true;
-			Debug.Log ("Player in line of sight");
+			//Debug.Log ("Player in line of sight");
 		}
 			
 		return isInLineOfSight;
@@ -138,7 +138,7 @@ public class Enemy : MonoBehaviour {
 	void OnTriggerEnter (Collider other)
 	{
 		if (other.GetComponent<Collider>().tag == "Player") {
-			Debug.Log ("Player in range!");
+			//Debug.Log ("Player in range!");
 			//playerInRange = true;
 		}
 	}

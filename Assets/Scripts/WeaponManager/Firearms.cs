@@ -8,7 +8,7 @@ public class Firearms
 	public static Firearm LaserRifle = new Firearm ("Laser Rifle", 5.0f, 2.3f, false, 0.2f, WeaponType.Laser);
 
 	// Enemy Weapons
-	public static Firearm EnemyLaserPistol = new Firearm("Adv. Laser Pistol", 5.0f, 1.0f, false, 0.2f, WeaponType.Laser);
+	public static Firearm EnemyLaserPistol = new Firearm("Adv. Laser Pistol", 7.0f, 1.0f, false, 0.0f, WeaponType.Laser);
 
 	// All Player Weapons
 	public List<Firearm> PlayerWeapons = new List<Firearm>{ LaserPistol, LaserRifle };
