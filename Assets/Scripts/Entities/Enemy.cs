@@ -6,6 +6,8 @@ public class Enemy : Entity {
 	
 	public float range = 10;
 	public float fieldOfView = 60.0f; // In degrees
+	float laserDelay = 0;
+	public float desiredDelay  = 5;
 
 	bool playerInRange = false;
 	bool playerInSight = false;
@@ -25,6 +27,7 @@ public class Enemy : Entity {
 	}
 
 	void Update () {
+		laserDelay--;
 		// Check range before sight since the sight has an expensive Linecast call
 		playerInRange = PlayerInRange ();
 		playerInSight = playerInRange && PlayerInLineOfSight ();
@@ -37,6 +40,11 @@ public class Enemy : Entity {
 		} else {
 			transform.Rotate (0, 1, 0);
 			ShotRenderer.enabled = false;
+		}
+
+		if (laserDelay <= 0.0f) {
+			ShotRenderer.enabled = false;
+			laserDelay = desiredDelay;
 		}
 	}
 
