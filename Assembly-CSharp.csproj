@@ -48,10 +48,11 @@
   <ItemGroup>
      <Compile Include="Assets\Levels\LevelLoad.cs" />
      <Compile Include="Assets\Scripts\Billboard.cs" />
-     <Compile Include="Assets\Scripts\Enemy.cs" />
-     <Compile Include="Assets\Scripts\Player\FirstPersonController.cs" />
-     <Compile Include="Assets\Scripts\Player\GameHUD.cs" />
-     <Compile Include="Assets\Scripts\Player\Player.cs" />
+     <Compile Include="Assets\Scripts\Entities\Enemy.cs" />
+     <Compile Include="Assets\Scripts\Entities\Entity.cs" />
+     <Compile Include="Assets\Scripts\Entities\Player\FirstPersonController.cs" />
+     <Compile Include="Assets\Scripts\Entities\Player\GameHUD.cs" />
+     <Compile Include="Assets\Scripts\Entities\Player\Player.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\Scripts\WeaponManager\Firearm.cs" />
      <Compile Include="Assets\Scripts\WeaponManager\Firearms.cs" />

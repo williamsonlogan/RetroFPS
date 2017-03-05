@@ -6,7 +6,6 @@ using System;
 [RequireComponent (typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour {
 
-	public float movementSpeed = 5.0f;
 	public float mouseSensitivity = 5.0f;
 	
 	float verticalRotation = 0;
@@ -34,36 +33,34 @@ public class FirstPersonController : MonoBehaviour {
 		}
 
 		UpdateMovement ();
-		if (Input.GetButtonDown("Fire1") && player.weaponMan.CanFireCurrentWeapon())
+		if (Input.GetButtonDown("Fire1") && player.WeaponMan.CanFireCurrentWeapon())
 		{
-			player.weaponMan.FireCurrentWeapon();
-			player.ShootGun();
-			player.shotRenderer.enabled = true;
+			player.ShootGun(Camera.main.ScreenPointToRay (new Vector2 (Screen.width / 2, Screen.height / 2)));
 		}
 		else
 		{
-			player.shotRenderer.enabled = false;
-			player.gunAnimation.SetBool("Shoot", false);
+			player.ShotRenderer.enabled = false;
+			player.GunAnimation.SetBool("Shoot", false);
 		}
 		UpdateWeapon ();
 	}
 
 	void UpdateWeapon()
 	{
-		int i = player.weaponMan.Weapons.IndexOf (player.weaponMan.CurrentWeapon);
+		int i = player.WeaponMan.Weapons.IndexOf (player.WeaponMan.CurrentWeapon);
 
 		if (Input.GetAxis("Mouse ScrollWheel") > 0.0f)
 		{
-			if (++i >= player.weaponMan.Weapons.Count)
+			if (++i >= player.WeaponMan.Weapons.Count)
 				i = 0;
 		}
 		else if (Input.GetAxis("Mouse ScrollWheel") < 0.0f)
 		{
 			if (--i < 0)
-				i = player.weaponMan.Weapons.Count - 1;
+				i = player.WeaponMan.Weapons.Count - 1;
 		}
 
-		player.weaponMan.CurrentWeapon = player.weaponMan.Weapons[i];
+		player.WeaponMan.CurrentWeapon = player.WeaponMan.Weapons[i];
 	}
 
 	void UpdateMovement(){
@@ -80,8 +77,8 @@ public class FirstPersonController : MonoBehaviour {
 
 		// Movement
 
-		float forwardSpeed = Input.GetAxis("Vertical") * movementSpeed;
-		float sideSpeed = Input.GetAxis("Horizontal") * movementSpeed;
+		float forwardSpeed = Input.GetAxis("Vertical") * player.Speed;
+		float sideSpeed = Input.GetAxis("Horizontal") * player.Speed;
 
 		verticalVelocity += Physics.gravity.y * Time.deltaTime;
 
@@ -104,9 +101,9 @@ public class FirstPersonController : MonoBehaviour {
 
 		//If moving, make that gun bob
 		if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0) {
-			player.gunAnimation.SetBool ("isMoving", false);
+			player.GunAnimation.SetBool ("isMoving", false);
 		} else {
-			player.gunAnimation.SetBool ("isMoving", true);
+			player.GunAnimation.SetBool ("isMoving", true);
 		}
 	}
 }

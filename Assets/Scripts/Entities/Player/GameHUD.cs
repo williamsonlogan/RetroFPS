@@ -14,14 +14,14 @@ public class GameHUD : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindObjectOfType<Player> ();
-		player.OnPlayerDeath += GameOver; // Subscribing the OnPlayerDeath event to the GameOver function
+		player.OnDeath += GameOver; // Subscribing the OnPlayerDeath event to the GameOver function
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		healthText.text = player.health.ToString ();
-		armorText.text = player.armor.ToString ();
-		weaponText.text = player.weaponMan.CurrentWeapon.weaponName;
+		healthText.text = player.Health.ToString ();
+		armorText.text = player.Armor.ToString ();
+		weaponText.text = player.WeaponMan.CurrentWeapon.weaponName;
 	}
 
 	public void GameOver()
