@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class GameHUD : MonoBehaviour {
 
@@ -8,6 +9,9 @@ public class GameHUD : MonoBehaviour {
 	public Text healthText;
 	public Text armorText;
 	public Text weaponText;
+	public Text clockText;
+
+	ClockManager cMan = new ClockManager();
 
 	int leveCount;
 
@@ -22,6 +26,9 @@ public class GameHUD : MonoBehaviour {
 		healthText.text = player.Health.ToString ();
 		armorText.text = player.Armor.ToString ();
 		weaponText.text = player.WeaponMan.CurrentWeapon.weaponName;
+
+		cMan.ClockIncrement ();
+		clockText.text = string.Format("{0}:{1}:{2}", Math.Floor (cMan.mins), Math.Round(cMan.sec, 0), Math.Round(cMan.mSec/100, 0));
 	}
 
 	public void GameOver()
