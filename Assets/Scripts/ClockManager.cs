@@ -3,16 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class ClockManager : MonoBehaviour {
+public class ClockManager {
 	public double mins = 0;
 	public float sec = 0;
 	public float mSec = 0;
 	public float totalSecs = 0;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 
 	public void ClockIncrement (){
 		totalSecs = Time.deltaTime;
