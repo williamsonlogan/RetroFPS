@@ -46,7 +46,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Level Editor\LevelLoad.cs" />
      <Compile Include="Assets\Menu.cs" />
      <Compile Include="Assets\Scripts\Billboard.cs" />
      <Compile Include="Assets\Scripts\ClockManager.cs" />
@@ -56,6 +55,7 @@
      <Compile Include="Assets\Scripts\Entities\Player\FirstPersonController.cs" />
      <Compile Include="Assets\Scripts\Entities\Player\GameHUD.cs" />
      <Compile Include="Assets\Scripts\Entities\Player\Player.cs" />
+     <Compile Include="Assets\Scripts\Level Editor\LevelLoad.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\Scripts\WeaponManager\Firearm.cs" />
      <Compile Include="Assets\Scripts\WeaponManager\Firearms.cs" />
@@ -77,6 +77,12 @@
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+ <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions.Common">
+ <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,6 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
+//Living things class
+
 public class Entity : MonoBehaviour
 {
 	public int Health = 0;
@@ -20,6 +22,7 @@ public class Entity : MonoBehaviour
 
 	public void TakeDamage(int dmg)
 	{
+		//Armor reduction
 		float difference = 0;
 		Armor -= Convert.ToInt32 (dmg);
 
@@ -27,15 +30,17 @@ public class Entity : MonoBehaviour
 			difference = -Armor;
 			Armor = 0;
 		}
-
+			
 		Debug.Log ("Player took " + Convert.ToInt32 ((dmg - difference) / 2 + difference) + " damage");
 		Health -= Convert.ToInt32((dmg - difference) / 2 + difference);
 
 		if (Health <= 0) {
 			OnDeath ();
+			Health = 0; //Keep health from going negative
 		}
 	}
 
+	//General gun shooting code
 	internal void ShootGun(Ray ray){
 		WeaponMan.FireCurrentWeapon ();
 		GunBlast.Play ();

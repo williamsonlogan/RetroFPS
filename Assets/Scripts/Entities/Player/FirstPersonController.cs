@@ -28,12 +28,15 @@ public class FirstPersonController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			//Application.Quit ();
-			Debug.Break ();
+			Debug.Break (); // Pauses game in editor, CHANGE FOR DEPLOYMENT
 		}
-
+			
 		UpdateMovement ();
+
+		//Gets left click to shoot, camera maths
 		if (Input.GetButtonDown("Fire1") && player.WeaponMan.CanFireCurrentWeapon())
 		{
 			player.ShootGun(Camera.main.ScreenPointToRay (new Vector2 (Screen.width / 2, Screen.height / 2)));
@@ -43,6 +46,7 @@ public class FirstPersonController : MonoBehaviour {
 			player.ShotRenderer.enabled = false;
 			player.GunAnimation.SetBool("Shoot", false);
 		}
+
 		UpdateWeapon ();
 	}
 
