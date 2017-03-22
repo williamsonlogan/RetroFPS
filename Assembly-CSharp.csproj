@@ -46,7 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Levels\LevelLoad.cs" />
+     <Compile Include="Assets\Level Editor\LevelLoad.cs" />
      <Compile Include="Assets\Menu.cs" />
      <Compile Include="Assets\Scripts\Billboard.cs" />
      <Compile Include="Assets\Scripts\ClockManager.cs" />
