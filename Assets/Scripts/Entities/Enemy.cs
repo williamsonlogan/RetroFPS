@@ -73,10 +73,9 @@ public class Enemy : Entity {
 	{
 		// Note that the distance does not call Mathf.Sqrt since that operation is expensive. Instead we compare the squared distance and range
 		bool playerIsInRange = false;
-		float distSqrd = ((transform.position.x - player.transform.position.x) * (transform.position.x - player.transform.position.x)) +
-		                 ((transform.position.y - player.transform.position.y) * (transform.position.y - player.transform.position.y));
+		float distance = Vector3.Distance (transform.position, player.transform.position);
 			
-		if (distSqrd <= range * range) {
+		if (distance <= range) {
 			playerIsInRange = true;
 		}
 

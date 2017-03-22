@@ -9,8 +9,8 @@ public class Spawner : MonoBehaviour {
 	public float radius;
 	private float spawnradius;
 	private float spawnradius2;
-//	public GameObject FirstPersonController;
-	public GameObject Enemy;
+	public GameObject Target;
+	public GameObject Prefab;
 	private Vector3 spawncircle;
 
 	// Use this for initialization
@@ -29,7 +29,8 @@ public class Spawner : MonoBehaviour {
 		spawncircle = new Vector3( (transform.position.x + spawnradius),transform.position.y , (transform.position.z + spawnradius2) );
 
 		// Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
-		Instantiate (Enemy, spawncircle, transform.rotation);
+		Enemy enemy = Instantiate (Prefab, spawncircle, transform.rotation).GetComponent<Enemy>();
+		enemy.player = Target;
 	}
 
 }
