@@ -23,13 +23,9 @@ public class Player : Entity {
 		Armor = 10;
 		Speed = 5.0f;
 
-		WeaponMan = new WeaponManager (AvailableWeapons.Custom);
+		WeaponMan = new WeaponManager (AvailableWeapons.None);
 		WeaponMan.AddWeapon (Firearms.LaserPistol);
 		WeaponMan.AddWeapon (Firearms.LaserRifle);
-	}
-	
-	// Update is called once per frame
-	void Update () {
 	}
 
 	void OnCollisionEnter(Collision col)

@@ -55,7 +55,7 @@ public class LevelLoad : MonoBehaviour {
 		foreach (ColorToPrefab ctp in colorToPrefab) {
 			if (c.Equals(ctp.color)) {
 				//spawn the prefab at right location
-				GameObject go = (GameObject)Instantiate (ctp.prefab, new Vector3 (x, y, z), Quaternion.identity);
+				Instantiate (ctp.prefab, new Vector3 (x, y, z), Quaternion.identity);
 
 				return;
 			}
