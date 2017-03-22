@@ -3,26 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : Entity {
-	
+
+	// Public class members
 	public float range = 10;
 	public float fieldOfView = 60.0f; // In degrees
-	float laserDelay = 0;
 	public float desiredDelay  = 5;
-
-	bool playerInRange = false;
-	bool playerInSight = false;
-
 	public GameObject player;
 
+	// Private class members
+	private bool playerInRange = false;
+	private bool playerInSight = false;
+	private float laserDelay = 0;
+	private Vector3 velocity;
+
 	void Start () {
+
+		// Setup entity specific 
 		Health = 2;
 		Armor = 0;
-		Speed = 3.5f;
+		Speed = 5.0f;
 
 		// Add available weapons to enemy - in the future we could randomize this
-		WeaponMan = new WeaponManager(AvailableWeapons.Custom);
+		WeaponMan = new WeaponManager(AvailableWeapons.None);
 		WeaponMan.AddWeapon (Firearms.EnemyLaserPistol);
 
+		// Subscribe the Die function to OnDeath
 		OnDeath += Die;
 	}
 
@@ -32,20 +37,36 @@ public class Enemy : Entity {
 		playerInRange = PlayerInRange ();
 		playerInSight = playerInRange && PlayerInLineOfSight ();
 
+		// If the player is in sight then look directly at it and shoot if possible
+		// Otherwise look for the player by rotating
 		if (playerInSight) {
 			transform.LookAt (player.transform);
 			if (WeaponMan.CanFireCurrentWeapon ()) {
 				ShootGun (new Ray(transform.position, Vector3.Normalize(player.transform.position - transform.position)));
 			}
+
+			// Handles velocity velocity vector (movement)
+			if (Vector3.Distance (player.transform.position, transform.position) > 2f)
+				velocity = Vector3.Normalize (player.transform.position - transform.position);
+			else
+				velocity = Vector3.zero;
+
+			velocity.y = 0f;
 		} else {
 			transform.Rotate (0, 1, 0);
 			ShotRenderer.enabled = false;
+
+			velocity = Vector3.zero;
 		}
 
+		// laserDelay handles the line renderer timing
 		if (laserDelay <= 0.0f) {
 			ShotRenderer.enabled = false;
 			laserDelay = desiredDelay;
 		}
+
+		// Move
+		transform.position += velocity * Time.deltaTime;
 	}
 
 	bool PlayerInLineOfSight()
@@ -57,7 +78,6 @@ public class Enemy : Entity {
 		//	  is less than or equal to FOV
 		// 2) Next we check to see if a LineCast returns true (this means that the enemy can see something, not necessarily the player)
 		// 3) Finally we check to see if the GameObject that was hit was the player
-
 		if (Vector3.Angle (player.transform.position - transform.position, transform.forward) <= fieldOfView &&
 			Physics.Linecast(transform.position, player.transform.position, out hit) &&
 			hit.collider.tag == "Player")
@@ -71,7 +91,6 @@ public class Enemy : Entity {
 
 	bool PlayerInRange()
 	{
-		// Note that the distance does not call Mathf.Sqrt since that operation is expensive. Instead we compare the squared distance and range
 		bool playerIsInRange = false;
 		float distance = Vector3.Distance (transform.position, player.transform.position);
 			
@@ -84,6 +103,7 @@ public class Enemy : Entity {
 
 	void Die()
 	{
+		// We can also play a death sound
 		Destroy (gameObject);
 		Debug.Log ("Enemy Died");
 	}

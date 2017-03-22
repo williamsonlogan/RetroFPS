@@ -30,11 +30,13 @@ public class Firearm
 	// Public Member Functions
 	public bool CanFire()
 	{
+		// Checks to see if the current time has passed the nextFireTime
 		return (Time.time > nextFireTime);
 	}
 
 	public void UpdateFireTime()
 	{
+		// Simply sets the next available firing time to the current time plus the weaponFireRate
 		nextFireTime = Time.time + weaponFireRate;
 	}
 }

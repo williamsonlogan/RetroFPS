@@ -14,10 +14,6 @@ public class Entity : MonoBehaviour
 
 	public event Action OnDeath;
 
-	void Start()
-	{
-	}
-
 	public void TakeDamage(int dmg)
 	{
 		float difference = 0;
