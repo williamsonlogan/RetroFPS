@@ -10,6 +10,7 @@ public class GameHUD : MonoBehaviour {
 	public Text armorText;
 	public Text weaponText;
 	public Text clockText;
+	public Text batteryText;
 
 	ClockManager cMan = new ClockManager();
 
@@ -26,6 +27,7 @@ public class GameHUD : MonoBehaviour {
 		healthText.text = player.Health.ToString ();
 		armorText.text = player.Armor.ToString ();
 		weaponText.text = player.WeaponMan.CurrentWeapon.weaponName;
+		batteryText.text = "Battery: " + Mathf.RoundToInt (player.WeaponMan.battery * 10) / 10f;
 
 		cMan.ClockIncrement ();
 		clockText.text = string.Format("{0}:{1}:{2}", Math.Floor (cMan.mins), Math.Round(cMan.sec, 0), Math.Round(cMan.mSec/100, 0));
