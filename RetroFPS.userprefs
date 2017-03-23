@@ -5,7 +5,10 @@
       <File FileName="Assets\Scripts\Entities\Entity.cs" Line="31" Column="14" />
       <File FileName="Assets\Scripts\Entities\Player\FirstPersonController.cs" Line="107" Column="33" />
       <File FileName="Assets\Scripts\Entities\Player\GameHUD.cs" Line="6" Column="2" />
-      <File FileName="Assets\Scripts\Entities\Player\Player.cs" Line="12" Column="26" />
+      <File FileName="Assets\Scripts\Entities\Player\Player.cs" Line="31" Column="38" />
+      <File FileName="Assets\Scripts\Pickup.cs" Line="19" Column="18" />
+      <File FileName="Assets\Scripts\WeaponManager\Firearms.cs" Line="4" Column="22" />
+      <File FileName="Assets\Scripts\Level Editor\LevelLoad.cs" Line="4" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

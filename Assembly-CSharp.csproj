@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\Entities\Player\GameHUD.cs" />
      <Compile Include="Assets\Scripts\Entities\Player\Player.cs" />
      <Compile Include="Assets\Scripts\Level Editor\LevelLoad.cs" />
+     <Compile Include="Assets\Scripts\Pickup.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\Scripts\WeaponManager\Firearm.cs" />
      <Compile Include="Assets\Scripts\WeaponManager\Firearms.cs" />
