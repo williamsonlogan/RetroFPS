@@ -22,6 +22,7 @@ public class Player : Entity {
 		Health = 100;
 		Armor = 10;
 		Speed = 5.0f;
+		Battery = 1.0f;
 
 		WeaponMan = new WeaponManager (AvailableWeapons.None);
 		WeaponMan.AddWeapon (Firearms.LaserPistol);

@@ -8,6 +8,7 @@ public class Entity : MonoBehaviour
 	public int Health = 0;
 	public int Armor = 0;
 	public float Speed = 0.0f;
+	public float Battery = 1.0f;
 
 	internal WeaponManager WeaponMan;
 	public Animator GunAnimation = new Animator();
@@ -33,6 +34,30 @@ public class Entity : MonoBehaviour
 		if (Health <= 0) {
 			OnDeath ();
 			Health = 0; //Keep health from going negative
+		}
+	}
+
+	public void GetHealth(int add){
+		if (gameObject.tag == "Player") {
+			Health += add;
+			if (Health > 200)
+				Health = 200;
+		}
+	}
+
+	public void GetArmor(int add){
+		if (gameObject.tag == "Player") {
+			Armor += add;
+			if (Armor > 100)
+				Armor = 100;
+		}
+	}
+
+	public void GetBattery(float add){
+		if (gameObject.tag == "Player") {
+			Battery += add;
+			if (Battery > 1.0f)
+				Battery = 1.0f;
 		}
 	}
 
