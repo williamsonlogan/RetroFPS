@@ -7,7 +7,7 @@ public class Enemy : Entity {
 	// Public class members
 	public float range = 10;
 	public float fieldOfView = 60.0f; // In degrees
-	public float desiredDelay  = 5;
+	public float desiredDelay = 5;
 	public GameObject player;
 
 	// Private class members
@@ -21,7 +21,7 @@ public class Enemy : Entity {
 		// Setup entity specific 
 		Health = 2;
 		Armor = 0;
-		Speed = 5.0f;
+		Speed = 1.0f;
 
 		// Add available weapons to enemy - in the future we could randomize this
 		WeaponMan = new WeaponManager(AvailableWeapons.None);
@@ -29,6 +29,22 @@ public class Enemy : Entity {
 
 		// Subscribe the Die function to OnDeath
 		OnDeath += Die;
+	}
+
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.blue;
+		//Gizmos.DrawLine(transform.position, transform.forward * range);
+
+		Gizmos.color = Color.black;
+		Gizmos.DrawLine (transform.position, transform.position + DirFromAngle(fieldOfView / 2) * range);
+		Gizmos.DrawLine (transform.position, transform.position + DirFromAngle(-fieldOfView / 2) * range);
+	}
+
+	Vector3 DirFromAngle(float theta)
+	{
+		theta += transform.eulerAngles.y;
+		return new Vector3 (Mathf.Sin (theta * Mathf.Deg2Rad), 0, Mathf.Cos (theta * Mathf.Deg2Rad));;
 	}
 
 	void Update () {
@@ -53,7 +69,7 @@ public class Enemy : Entity {
 
 			velocity.y = 0f;
 		} else {
-			transform.Rotate (0, 1, 0);
+			transform.Rotate (0, 5, 0);
 			ShotRenderer.enabled = false;
 
 			velocity = Vector3.zero;
@@ -66,7 +82,7 @@ public class Enemy : Entity {
 		}
 
 		// Move
-		transform.position += velocity * Time.deltaTime;
+		transform.position += velocity * 5 * Time.deltaTime;
 	}
 
 	bool PlayerInLineOfSight()
@@ -78,7 +94,7 @@ public class Enemy : Entity {
 		//	  is less than or equal to FOV
 		// 2) Next we check to see if a LineCast returns true (this means that the enemy can see something, not necessarily the player)
 		// 3) Finally we check to see if the GameObject that was hit was the player
-		if (Vector3.Angle (player.transform.position - transform.position, transform.forward) <= fieldOfView &&
+		if (Vector3.Angle (player.transform.position - transform.position, transform.forward) <= (fieldOfView / 2) &&
 			Physics.Linecast(transform.position, player.transform.position, out hit) &&
 			hit.collider.tag == "Player")
 		{
