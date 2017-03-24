@@ -22,6 +22,9 @@ public class Door : MonoBehaviour {
 
 	void CheckKey() {
 		switch (Key) {
+		case keytype.None:
+			Open ();
+			break;
 		case keytype.Red:
 			if (player.keys.red == true) {
 				Open ();
@@ -45,12 +48,15 @@ public class Door : MonoBehaviour {
 
 	void Open() {
 		Debug.Log ("Door Open!");
+		Destroy (gameObject);
 	}
 
-	void OnCollisionEnter(Collision col)
+	void OnTriggerStay(Collider col)
 	{
 		if (col.gameObject.tag == "Player") {
-			if (Input.GetButton ("Use")) {
+			Debug.Log ("Player Touched Door!");
+			if (Input.GetButtonDown ("Use")) {
+				Debug.Log ("Door check");
 				CheckKey ();
 			}
 		}
