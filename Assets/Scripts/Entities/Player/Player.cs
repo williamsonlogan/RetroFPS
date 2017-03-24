@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class Player : Entity {
 
@@ -27,6 +29,8 @@ public class Player : Entity {
 		WeaponMan = new WeaponManager (AvailableWeapons.None);
 		WeaponMan.AddWeapon (Firearms.LaserPistol);
 		WeaponMan.AddWeapon (Firearms.LaserRifle);
+
+		OnDeath += Die;
 	}
 
 	void OnCollisionEnter(Collision col)
@@ -37,5 +41,11 @@ public class Player : Entity {
 				Debug.Log("Hit door");
 			}
 		}
+	}
+
+	void Die()
+	{
+		Scene scene = SceneManager.GetActiveScene ();
+		SceneManager.LoadScene (scene.name);
 	}
 }
