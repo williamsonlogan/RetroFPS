@@ -28,10 +28,12 @@ public class FirstPersonController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
 
 		if (Input.GetKeyDown(KeyCode.Escape)) {
-			//Application.Quit ();
-			Debug.Break (); // Pauses game in editor, CHANGE FOR DEPLOYMENT
+			Application.Quit ();
+			//Debug.Break (); // Pauses game in editor, CHANGE FOR DEPLOYMENT
 		}
 			
 		UpdateMovement ();

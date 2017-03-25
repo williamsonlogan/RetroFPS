@@ -84,5 +84,6 @@ public class Entity : MonoBehaviour
 			GunAnimation.SetBool ("Shoot", true);
 
 		ShotRenderer.enabled = true;
+		ShotRenderer.useWorldSpace = true;
 	}
 }
