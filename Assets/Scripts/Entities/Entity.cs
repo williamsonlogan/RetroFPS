@@ -17,6 +17,8 @@ public class Entity : MonoBehaviour
 
 	public event Action OnDeath;
 
+
+
 	public void TakeDamage(int dmg)
 	{
 		//Armor reduction
@@ -83,6 +85,7 @@ public class Entity : MonoBehaviour
 		if (GunAnimation != null)
 			GunAnimation.SetBool ("Shoot", true);
 
+		ShotRenderer.useWorldSpace = true;
 		ShotRenderer.enabled = true;
 	}
 }

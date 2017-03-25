@@ -20,6 +20,9 @@ public class Menu : MonoBehaviour {
 	void Start () {
 		Screen.SetResolution (width, height, full);
 		settings.gameObject.SetActive (false);
+
+		Cursor.lockState = CursorLockMode.Confined;
+		Cursor.visible = true;
 	}
 	
 	// Update is called once per frame
@@ -28,7 +31,7 @@ public class Menu : MonoBehaviour {
 	}
 
 	void Play () {
-		SceneManager.LoadScene ("01");
+		SceneManager.LoadScene ("Demo");
 	}
 
 	void Quit () {
