@@ -27,7 +27,7 @@ public class FirstPersonController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
 
@@ -42,6 +42,7 @@ public class FirstPersonController : MonoBehaviour {
 		if (Input.GetButtonDown("Fire1") && player.WeaponMan.CanFireCurrentWeapon())
 		{
 			player.ShootGun(Camera.main.ScreenPointToRay (new Vector2 (Screen.width / 2, Screen.height / 2)));
+
 		}
 		else
 		{

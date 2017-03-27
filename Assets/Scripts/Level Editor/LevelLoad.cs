@@ -27,8 +27,13 @@ public class LevelLoad : MonoBehaviour {
 
 	void LoadMap () {
 		EmptyMap ();
+		GameObject map = new GameObject ();
+		map.name = "Map";
 
 		for (int i = 0; i < levelMap.Length; i++) {
+			GameObject layer = new GameObject ();
+			layer.name = "Layer" + i;
+			layer.transform.parent = map.transform;
 			
 			//Get the raw pixels from the imagemaps
 			Color32[] allPixels = levelMap[i].GetPixels32 ();
@@ -38,7 +43,7 @@ public class LevelLoad : MonoBehaviour {
 			for (int x = 0; x < width; x++) {
 				for (int y = 0; y < height; y++) {
 
-					SpawnTileAt (allPixels [(y * width) + x], x, i, y);
+					SpawnTileAt (allPixels [(y * width) + x], x, i, y, layer);
 
 				}
 			}
@@ -46,7 +51,7 @@ public class LevelLoad : MonoBehaviour {
 
 	}
 
-	void SpawnTileAt (Color32 c, int x, int y, int z){
+	void SpawnTileAt (Color32 c, int x, int y, int z, GameObject layer){
 		//if transparent, leave empty
 		if (c.a <= 0) {
 			return;
@@ -55,8 +60,9 @@ public class LevelLoad : MonoBehaviour {
 		foreach (ColorToPrefab ctp in colorToPrefab) {
 			if (c.Equals(ctp.color)) {
 				//spawn the prefab at right location
-				Instantiate (ctp.prefab, new Vector3 (x, y, z), Quaternion.identity);
+				GameObject Block = Instantiate (ctp.prefab, new Vector3 (x, y, z), Quaternion.identity);
 
+				Block.transform.parent = layer.transform;
 				return;
 			}
 		}
