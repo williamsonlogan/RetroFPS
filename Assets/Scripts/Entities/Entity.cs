@@ -76,7 +76,7 @@ public class Entity : MonoBehaviour
 
 		if (Physics.Raycast(ray, out hit, 20.0f) && (hit.collider.tag == "Enemy" || hit.collider.tag == "Player")) {
 			hit.collider.SendMessage("TakeDamage", WeaponMan.CurrentWeapon.weaponDamage, SendMessageOptions.DontRequireReceiver);
-			Debug.Log (hit.collider.tag + " Hit");
+			Debug.Log (hit.collider.tag + " Hit");      
 		}
 		if(Physics.Raycast(ray, out hit, 800.0f)){
 			ShotRenderer.SetPosition(1, hit.point);

@@ -17,6 +17,7 @@ public class Enemy : Entity {
 	private Vector3 velocity;
 
 	void Start () {
+		player = GameObject.FindGameObjectWithTag ("Player");
 
 		// Setup entity specific 
 		Health = 2;
@@ -62,7 +63,7 @@ public class Enemy : Entity {
 			}
 
 			// Handles velocity velocity vector (movement)
-			if (Vector3.Distance (player.transform.position, transform.position) > 2f)
+			if (Vector3.Distance (player.transform.position, transform.position) > range*.75f)
 				velocity = Vector3.Normalize (player.transform.position - transform.position);
 			else
 				velocity = Vector3.zero;
