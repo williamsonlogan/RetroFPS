@@ -15,13 +15,12 @@ public class Enemy : Entity {
 	private bool playerInSight = false;
 	private float laserDelay = 0;
 	private Vector3 velocity;
+	private Vector3[] path;
+
+	// Testing
+	float pathQueryTime;
 
 	void Start () {
-
-		// Setup entity specific 
-		Health = 2;
-		Armor = 0;
-		Speed = 1.0f;
 
 		// Add available weapons to enemy - in the future we could randomize this
 		WeaponMan = new WeaponManager(AvailableWeapons.None);
@@ -29,16 +28,44 @@ public class Enemy : Entity {
 
 		// Subscribe the Die function to OnDeath
 		OnDeath += Die;
+
+		PathRequestManager.RequestPath(transform.position, player.transform.position, OnPathFound);
+	}
+
+	void OnPathFound(Vector3[] newPath, bool success)
+	{
+		if (success) {
+			path = newPath;
+			StopCoroutine ("FollowPath");
+			StartCoroutine ("FollowPath");
+		}
+	}
+
+	IEnumerator FollowPath()
+	{
+		int targetIndex = 0;
+		Vector3 currentWaypoint = path [0];
+
+		while (true) {
+			if (transform.position == currentWaypoint) {
+				if (++targetIndex >= path.Length)
+					yield break;
+				currentWaypoint = path [targetIndex];
+			}
+
+			transform.position = Vector3.MoveTowards (transform.position, currentWaypoint, Speed);
+			yield return null;
+		}
 	}
 
 	void OnDrawGizmos()
 	{
-		Gizmos.color = Color.blue;
+		/*Gizmos.color = Color.blue;
 		//Gizmos.DrawLine(transform.position, transform.forward * range);
 
 		Gizmos.color = Color.black;
 		Gizmos.DrawLine (transform.position, transform.position + DirFromAngle(fieldOfView / 2) * range);
-		Gizmos.DrawLine (transform.position, transform.position + DirFromAngle(-fieldOfView / 2) * range);
+		Gizmos.DrawLine (transform.position, transform.position + DirFromAngle(-fieldOfView / 2) * range);*/
 	}
 
 	Vector3 DirFromAngle(float theta)

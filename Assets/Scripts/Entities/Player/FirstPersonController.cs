@@ -12,7 +12,7 @@ public class FirstPersonController : MonoBehaviour {
 	public float upDownRange = 60.0f;
 	float verticalVelocity = 0;
 
-	public Player player;
+	Player player;
 	
 	CharacterController characterController;
 	
@@ -24,6 +24,7 @@ public class FirstPersonController : MonoBehaviour {
 
 		//Create character controller
 		characterController = GetComponent<CharacterController>();
+		player = GetComponent<Player> ();
 	}
 	
 	// Update is called once per frame
@@ -43,8 +44,8 @@ public class FirstPersonController : MonoBehaviour {
 		}
 		else
 		{
-			player.ShotRenderer.enabled = false;
-			player.GunAnimation.SetBool("Shoot", false);
+			//player.ShotRenderer.enabled = false;
+			//player.GunAnimation.SetBool("Shoot", false);
 		}
 
 		UpdateWeapon ();
@@ -106,9 +107,9 @@ public class FirstPersonController : MonoBehaviour {
 
 		//If moving, make that gun bob
 		if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0) {
-			player.GunAnimation.SetBool ("isMoving", false);
+			//player.GunAnimation.SetBool ("isMoving", false);
 		} else {
-			player.GunAnimation.SetBool ("isMoving", true);
+			//player.GunAnimation.SetBool ("isMoving", true);
 		}
 	}
 }

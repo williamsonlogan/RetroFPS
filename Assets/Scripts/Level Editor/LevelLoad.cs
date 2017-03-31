@@ -35,10 +35,10 @@ public class LevelLoad : MonoBehaviour {
 			int width = levelMap[i].width;
 			int height = levelMap[i].height;
 
-			for (int x = 0; x < width; x++) {
-				for (int y = 0; y < height; y++) {
+			for (int x = -width / 2; x < width / 2; x++) {
+				for (int y = -height / 2; y < height / 2; y++) {
 
-					SpawnTileAt (allPixels [(y * width) + x], x, i, y);
+					SpawnTileAt (allPixels [((y + height / 2) * width) + (x + width / 2)], x, i, y);
 
 				}
 			}
