@@ -1,21 +1,21 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\WeaponManager\Firearm.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Pickup.cs">
     <Files>
-      <File FileName="Assets\Scripts\Entities\Entity.cs" Line="10" Column="28" />
-      <File FileName="Assets\Scripts\Entities\Player\FirstPersonController.cs" Line="16" Column="2" />
-      <File FileName="Assets\Scripts\Entities\Player\GameHUD.cs" Line="21" Column="51" />
+      <File FileName="Assets\Scripts\Entities\Entity.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Entities\Player\FirstPersonController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Entities\Player\GameHUD.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Entities\Player\Player.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Pickup.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\WeaponManager\Firearms.cs" Line="7" Column="28" />
+      <File FileName="Assets\Scripts\WeaponManager\Firearms.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Level Editor\LevelLoad.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Entities\Enemy.cs" Line="20" Column="3" />
-      <File FileName="Assets\Scripts\Door.cs" Line="15" Column="56" />
+      <File FileName="Assets\Scripts\Entities\Enemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Door.cs" Line="1" Column="1" />
       <File FileName="Assets\Menu.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\LevelExit.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ClockManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Spawner.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\WeaponManager\Firearm.cs" Line="8" Column="37" />
+      <File FileName="Assets\Scripts\WeaponManager\Firearm.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
